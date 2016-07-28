@@ -108,15 +108,13 @@
 
 -(void)init:(id)args
 {
-    NSLog(@"[INFO] %@ Init Growthbeat",self);
+    ENSURE_SINGLE_ARG(args, NSDictionary)
     NSString * applicationId = [TiUtils stringValue:@"applicationId" properties:args def:nil];
     NSString * credentialId = [TiUtils stringValue:@"credentialId" properties:args def:nil];
+    NSLog(@"[INFO] Init Growthbeat: %@,%@", applicationId, credentialId);
 
     // Growthbeat SDKの初期化
     [[GrowthPush sharedInstance] initializeWithApplicationId:applicationId credentialId:credentialId environment:kGrowthPushEnvironment];
-
-    // デバイストークンを明示的に要求
-    [[GrowthPush sharedInstance] requestDeviceToken];
 
     // deviceTagの取得
     [[GrowthPush sharedInstance] setDeviceTags];
@@ -130,7 +128,7 @@
 {
     NSString * deviceToken = [TiUtils stringValue:@"deviceToken" properties:args def:nil];
 
-    NSLog(@"[INFO] %@ Send GrowthPush token",self);
+    NSLog(@"[INFO] Send GrowthPush token", self);
     [[GrowthPush sharedInstance] setDeviceToken:deviceToken];
 }
 

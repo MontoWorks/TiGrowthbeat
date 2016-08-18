@@ -111,16 +111,17 @@
     ENSURE_SINGLE_ARG(args, NSDictionary)
     NSString * applicationId = [TiUtils stringValue:@"applicationId" properties:args def:nil];
     NSString * credentialId = [TiUtils stringValue:@"credentialId" properties:args def:nil];
-    NSLog(@"[INFO] Init Growthbeat: %@,%@", applicationId, credentialId);
+    // NSLog(@"[INFO] Init Growthbeat: %@,%@", applicationId, credentialId);
+    NSLog(@"[INFO] Init Growthbeat", self);
 
     // Growthbeat SDKの初期化
     [[GrowthPush sharedInstance] initializeWithApplicationId:applicationId credentialId:credentialId environment:kGrowthPushEnvironment];
 
     // deviceTagの取得
-    [[GrowthPush sharedInstance] setDeviceTags];
+    // [[GrowthPush sharedInstance] setDeviceTags];
 
     // Launchイベントの取得
-    NSLog(@"[INFO] %@ Track Launch event",self);
+    // NSLog(@"[INFO] %@ Track Launch event",self);
     [[GrowthPush sharedInstance] trackEvent:@"Launch"];
 }
 

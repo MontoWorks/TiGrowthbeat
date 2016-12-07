@@ -42,7 +42,7 @@ In general, you will write following code.
 ```
 Ti.Network.registerForPushNotifications({
   success: function(e){
-    Growthbeat.setDeviceToken(e.deviceToken);
+    Growthbeat.setDeviceToken({deviceToken: e.deviceToken});
   },
 });
 ```
